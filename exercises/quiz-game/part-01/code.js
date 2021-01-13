@@ -27,15 +27,13 @@ const newGame = () => {
 
 const game = () => {
 	div.innerHTML = `<h2>${quiz[num].question}</h2>`;
-	for (const a of quiz[num].answers) {
+	for (const a of quiz[num].answers) 
 		div.innerHTML += `<button onclick="${answer(a)}">${a}</button>`;
-	}
 };
 
 const answer = x => {
-	if (x === quiz[num].correct) {
+	if (x === quiz[num].correct) 
 		return `alert('correct answer')`;
-	} else {
+	else 
 		return `alert('wrong answer')`;
-	}
 };
