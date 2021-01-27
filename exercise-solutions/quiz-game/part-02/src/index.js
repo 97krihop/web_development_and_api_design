@@ -5,15 +5,10 @@ function answerTag(prefix, answer, correct) {
 
     let onclick;
 
-    if(correct) {
-        onclick = "alert('Correct!!!');  EntryPoint.displayNewQuiz();";
-    } else {
-        onclick = "alert('Wrong answer');";
-    }
+    if(correct) onclick = "alert('Correct!!!');  EntryPoint.displayNewQuiz();";
+     else onclick = "alert('Wrong answer');";
 
-    const html = "<div class='answer' onclick=\""+onclick+"\">" + prefix + answer + "</div>";
-
-    return html;
+    return "<div class='answer' onclick=\"" + onclick + "\">" + prefix + answer + "</div>";
 }
 
 function displayQuiz (quiz) {
