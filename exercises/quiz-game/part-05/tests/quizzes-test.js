@@ -1,4 +1,4 @@
-const {getRandomQuizzes} = require("../src/quizzes");
+const {getRandomQuizzes} = require("../src/client/quizzes");
 
 test("invalid", ()=>{
     expect(() => getRandomQuizzes(-1)).toThrow();

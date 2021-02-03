@@ -1,6 +1,6 @@
 const React = require('react');
 const {mount} = require('enzyme');
-const {Match} = require("../src/match");
+const {Match} = require("../src/client/match");
 
 
 function checkQuizIsDisplayed(driver) {

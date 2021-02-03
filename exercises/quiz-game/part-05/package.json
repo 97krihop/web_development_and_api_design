@@ -53,7 +53,8 @@
 	"scripts": {
 		"build": "webpack --mode production",
 		"dev": "webpack serve --open --mode development",
-		"test": "jest --coverage"
+		"test": "jest --coverage",
+		"start": "node src/server/server.js"
 	},
 	"version": "1.0.0"
 }
