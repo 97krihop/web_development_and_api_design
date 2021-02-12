@@ -32,28 +32,26 @@ export function getRandomQuizzes(numberOfQuizzes) {
     return Array.from(list).map(x => quiz[x])
 }*/
 export async function getRandomQuizzes(numberOfQuizzes) {
-    if (numberOfQuizzes < 1) throw "Invalid number too low";
+    if (numberOfQuizzes < 1) throw 'Invalid number too low';
 
-    const url = "https://opentdb.com/api.php?type=multiple&amount="
-    let response
-    let data
+    const url = 'https://opentdb.com/api.php?type=multiple&amount=';
+    let response;
+    let data;
     try {
-         response = await fetch(url + numberOfQuizzes);
+        response = await fetch(url + numberOfQuizzes);
         data = await response.json();
-    }catch (err){
+    } catch (err) {
         return null;
     }
 
     if (response.status !== 200) return null;
-    return data.results.map(x =>{
+    return data.results.map((x) => {
         const pos = Math.floor(Math.random() * Math.floor(3));
-        x.incorrect_answers.splice(pos,0,x.correct_answer)
+        x.incorrect_answers.splice(pos, 0, x.correct_answer);
         return {
             question: x.question,
             answers: x.incorrect_answers,
-            indexOfRightAnswer: pos
+            indexOfRightAnswer: pos,
         };
-    })
-
-
+    });
 }

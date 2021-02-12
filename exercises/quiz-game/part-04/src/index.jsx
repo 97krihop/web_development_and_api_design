@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Match} from "./match";
+import { Match } from './match';
 
 const App = () => {
-    return (
-        <Match/>
-        )
-}
+    return <Match />;
+};
 
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
