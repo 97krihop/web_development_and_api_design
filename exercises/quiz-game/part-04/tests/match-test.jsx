@@ -3,25 +3,24 @@ const {mount} = require('enzyme');
 const {Match} = require("../src/match");
 
 
-function checkQuizIsDisplayed(driver) {
+function checkQuizIsDisplayed(mounted) {
 
-    const questions = driver.find('.question');
+    const questions = mounted.find('.question');
     expect(questions.length).toEqual(1);
 
-    const answers = driver.find('.answer');
+    const answers = mounted.find('.answer');
     expect(answers.length).toEqual(4);
 }
 
 test("Test rendered quiz", () => {
-
-    const driver = mount(<Match/>);
-    checkQuizIsDisplayed(driver);
+    const mounted = mount(<Match/>);
+    checkQuizIsDisplayed(mounted);
 });
 
 
 test("Test do answer", () => {
 
-    const driver = mount(<Match/>);
+    const mounted = mount(<Match/>);
 
     let msg = undefined;
 
@@ -29,9 +28,9 @@ test("Test do answer", () => {
         msg = s
     };
 
-    const first = driver.find('.answer').at(0);
+    const first = mounted.find('.answer').at(0);
     first.simulate('click');
 
-    checkQuizIsDisplayed(driver);
+    checkQuizIsDisplayed(mounted);
     expect(msg).toBeDefined();
 });
