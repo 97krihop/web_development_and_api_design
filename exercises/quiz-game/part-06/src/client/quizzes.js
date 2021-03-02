@@ -43,8 +43,7 @@ export async function getRandomQuizzes(numberOfQuizzes) {
         return {
             question: q.question,
             answers: answers,
-            indexOfRightAnswer: correct,
-            id: 0
+            correct: correct
         };
     })
 }
