@@ -5,7 +5,14 @@
 			"@babel/plugin-proposal-class-properties"
 		],
 		"presets": [
-			"@babel/env",
+			[
+				"@babel/env",
+				{
+					"targets": {
+						"node": "current"
+					}
+				}
+			],
 			"@babel/react"
 		]
 	},
@@ -48,7 +55,7 @@
 	},
 	"license": "MIT",
 	"main": "index.js",
-	"name": "part-05",
+	"name": "part-06",
 	"repository": {},
 	"scripts": {
 		"build": "webpack --mode production",
