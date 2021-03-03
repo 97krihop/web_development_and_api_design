@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 
-import {getRandomQuizzes} from './quizzes';
 
 export function Match() {
     const [error, setError] = useState(null);
@@ -17,7 +16,7 @@ export function Match() {
 
 
     const startGame = async () => {
-        const quizzes = await getRandomQuizzes(3);
+        const quizzes = await getRandomQuizzes();
         if (!quizzes) {
             setError("Error when connecting to server");
         } else {
@@ -29,6 +28,25 @@ export function Match() {
             setLength(quizzes.length);
         }
     };
+    const getRandomQuizzes = async numberOfQuizzes => {
+        if (numberOfQuizzes < 1) throw "Invalid number of requested quizzes: " + n;
+
+
+        const url = "/api/matches";
+        let response;
+        let payload;
+
+        try {
+            response = await fetch(url, {method: "post"});
+            payload = await response.json();
+        } catch (err) {
+            return null;
+        }
+
+        if (response.status !== 201) return null;
+        return payload;
+    };
+
 
     const handleClick = (x) => {
         if (x) {
@@ -80,7 +98,7 @@ export function Match() {
     return (
         <div>
             <p className="question">Question: {quiz[current].question} </p>
-            <div className={'quizContainer'}>
+            <div id={"quiz_" + quiz[current].id} className={'quizContainer'}>
                 {renderAnswerTag(
                     'A: ',
                     quiz[current].answers[0],

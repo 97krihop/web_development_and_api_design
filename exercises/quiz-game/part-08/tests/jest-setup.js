@@ -1,6 +1,6 @@
 // Origin: shared/jest-setup.js
 
-const { configure } = require('enzyme');
+const {configure} = require('enzyme');
 const jsdom = require('jsdom');
 const Adapter = require('enzyme-adapter-react-16');
 
@@ -14,19 +14,19 @@ const Adapter = require('enzyme-adapter-react-16');
  */
 
 export function setUpDomEnvironment(url) {
-    const { JSDOM } = jsdom;
+    const {JSDOM} = jsdom;
     const dom = new JSDOM(
         '<!doctype html><html lang="en"><body></body></html>',
-        { url: url }
+        {url: url}
     );
-    const { window } = dom;
+    const {window} = dom;
 
     global.window = window;
     global.document = window.document;
-    global.navigator = { userAgent: 'node.js' };
+    global.navigator = {userAgent: 'node.js'};
     copyProps(window, global);
 
-    configure({ adapter: new Adapter() });
+    configure({adapter: new Adapter()});
 }
 
 function copyProps(src, target) {
