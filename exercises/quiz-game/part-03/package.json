@@ -22,7 +22,7 @@
 		"babel-loader": "8.2.2",
 		"jest": "24.9.0",
 		"webpack": "5.11.1",
-		"webpack-cli": "4.3.1",
+		"webpack-cli": "4.5.0",
 		"webpack-dev-server": "3.11.1"
 	},
 	"jest": {
