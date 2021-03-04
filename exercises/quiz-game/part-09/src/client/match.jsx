@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-
-export function Match() {
+ export default function Match({user,setUser,fetchAndUpdateUser}) {
     const [error, setError] = useState(null);
     const [quiz, setQuiz] = useState();
     const [victory, setVictory] = useState(false);

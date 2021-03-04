@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const NotFound = () => {
+export default function NotFound() {
     return (
         <div>
             <h2>NOT FOUND: 404</h2>

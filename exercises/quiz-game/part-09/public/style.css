@@ -8,6 +8,12 @@ body {
 h1 {
     font-size: 3rem;
 }
+.header{
+    display: flex;
+    padding: 1rem 4rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .quizContainer {
     display: flex;

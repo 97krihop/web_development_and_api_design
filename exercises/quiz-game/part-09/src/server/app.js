@@ -1,19 +1,59 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require("express-session");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 
+const authApi = require('./routes/auth-api');
 const matchApi = require('./routes/match-api');
+const Users = require('./db/users');
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/api', matchApi);
+app.use(session({
+    secret: 'something',
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(express.static('public'));
 
-app.use((req, res) => {
-    res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'));
+passport.use(new LocalStrategy(
+    {
+        usernameField: 'userId',
+        passwordField: 'password'
+    }, (userId, password, done) => {
+        const ok = Users.verifyUser(userId, password);
+
+        if (!ok) return done(null, false, {message: 'Invalid username/password'});
+
+        const user = Users.getUser(userId);
+        return done(null, user);
+    }
+));
+
+passport.serializeUser((user, done) => {
+    done(null, user.id)
+});
+
+passport.deserializeUser((id, done) => {
+    const user = Users.getUser(id)
+    if (user) done(null, user)
+    else done(null, false)
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/api', authApi);
+app.use('/api', matchApi);
+
+
+app.use((req, res, next) =>{
+    res.sendFile(path.resolve(__dirname, '..', '..', 'public', 'index.html'))
 });
 
 module.exports = app;
